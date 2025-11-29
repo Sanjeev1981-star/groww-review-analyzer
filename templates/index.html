@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groww App Review Insights Analyzer</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}?v=2">
+    <style>
+        :root {
+            --groww-green: #00d09c;
+            --groww-dark: #00b386;
+        }
+        body {
+            background: linear-gradient(135deg, #00d09c 0%, #00b386 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, var(--groww-green), var(--groww-dark));
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 208, 156, 0.3);
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .card-header {
+            background: linear-gradient(135deg, var(--groww-green), var(--groww-dark));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 1.25rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--groww-green), var(--groww-dark));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 208, 156, 0.4);
+        }
+        .btn-info {
+            background: linear-gradient(135deg, #00d09c, #00b386);
+            border: none;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-info:hover {
+            background: linear-gradient(135deg, #00b386, #00d09c);
+            transform: translateY(-3px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--groww-green);
+            margin-bottom: 1rem;
+        }
+        .stats-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .upload-area {
+            border: 3px dashed var(--groww-green);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            background: rgba(0, 208, 156, 0.05);
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            background: rgba(0, 208, 156, 0.1);
+        }
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 2rem 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-4 py-5">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <div class="mb-3">
+                <!-- Groww Icon/Logo -->
+                <div class="feature-icon" style="font-size: 4rem; margin-bottom: 1rem;">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1 class="display-4 fw-bold mb-3">
+                    Groww App Review Insights Analyzer
+                </h1>
+            </div>
+            <p class="lead text-muted">Transform app store reviews into actionable insights for Groww</p>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="hero-section text-center mb-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="mb-4">
+                        <i class="fas fa-magic me-2"></i>Turn Reviews Into Actionable Insights
+                    </h2>
+                    <p class="lead mb-4">
+                        Our AI-powered analyzer processes Groww app store reviews, identifies key themes, 
+                        and generates weekly pulse reports to help improve the product.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <div class="stats-card">
+                            <div class="stats-number">5</div>
+                            <div class="stats-label">Key Themes</div>
+                        </div>
+                        <div class="stats-card">
+                            <div class="stats-number">100%</div>
+                            <div class="stats-label">Automated</div>
+                        </div>
+                        <div class="stats-card">
+                            <div class="stats-number">24/7</div>
+                            <div class="stats-label">Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-circle me-2"></i>{{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <!-- Update Reviews Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-sync-alt me-2"></i>Update Reviews</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                            <p class="lead">Generate fresh sample review data for Groww app analysis</p>
+                            <button id="updateBtn" class="btn btn-info btn-lg" onclick="updateReviews()">
+                                <i class="fas fa-bolt me-2"></i>Generate Fresh Reviews
+                            </button>
+                            <div id="updateStatus" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upload form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-file-upload me-2"></i>Upload Groww Reviews CSV</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/upload" enctype="multipart/form-data">
+                            <div class="upload-area mb-4" id="dropZone">
+                                <div class="upload-icon">
+                                    <i class="fas fa-file-csv"></i>
+                                </div>
+                                <h4>Drag & Drop your Groww CSV file here</h4>
+                                <p class="text-muted">or click to browse files</p>
+                                <input class="form-control d-none" type="file" id="file" name="file" accept=".csv" onchange="updateFileName(this)">
+                                <button type="button" class="btn btn-outline-primary mt-2" onclick="document.getElementById('file').click()">
+                                    <i class="fas fa-folder-open me-2"></i>Browse Files
+                                </button>
+                                <div id="fileName" class="mt-2 text-muted"></div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="uploadBtn">
+                                    <i class="fas fa-chart-bar me-2"></i>Analyze Groww Reviews
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Sample download -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-download me-2"></i>Sample Groww Data</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <p>Don't have a CSV file? Download our sample Groww dataset to get started</p>
+                        <a href="/download_sample" class="btn btn-secondary">
+                            <i class="fas fa-download me-2"></i>Download Sample CSV
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Instructions -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-question-circle me-2"></i>How to Use</h5>
+                    </div>
+                    <div class="card-body">
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item">
+                                <span class="step-number">1</span>
+                                Optionally generate fresh review data using the "Generate Fresh Reviews" button
+                            </li>
+                            <li class="list-group-item">
+                                <span class="step-number">2</span>
+                                Prepare a CSV file with the following columns:
+                                <ul class="mt-2">
+                                    <li><strong>date</strong>: Review date (YYYY-MM-DD format)</li>
+                                    <li><strong>rating</strong>: Review rating (1-5)</li>
+                                    <li><strong>review_text</strong>: Review content</li>
+                                    <li><strong>review_title</strong>: Review title (optional)</li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="step-number">3</span>
+                                Upload the CSV file using the form above
+                            </li>
+                            <li class="list-group-item">
+                                <span class="step-number">4</span>
+                                View the analysis results including themes, sentiment, and action items
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><i class="fas fa-lightbulb me-2"></i>Groww App Review Insights</h4>
+                    <p>Transform customer feedback into product improvements for Groww with our automated analysis platform.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h4>Features</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle me-2 text-success"></i>Theme Extraction</li>
+                        <li><i class="fas fa-check-circle me-2 text-success"></i>Sentiment Analysis</li>
+                        <li><i class="fas fa-check-circle me-2 text-success"></i>Actionable Insights</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 Groww App Review Insights Analyzer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateReviews() {
+            const btn = document.getElementById('updateBtn');
+            const status = document.getElementById('updateStatus');
+            
+            // Disable button and show loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Updating...';
+            status.innerHTML = '<div class="alert alert-info"><i class="fas fa-sync fa-spin me-2"></i>Generating fresh review data...</div>';
+            
+            // Make API call to update reviews
+            fetch('/api/update_reviews')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        status.innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle me-2"></i>Reviews updated successfully! You can now upload the latest data.</div>';
+                    } else {
+                        status.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Failed to update reviews: ' + data.message + '</div>';
+                    }
+                })
+                .catch(error => {
+                    status.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Error updating reviews: ' + error.message + '</div>';
+                })
+                .finally(() => {
+                    // Re-enable button
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-bolt me-2"></i>Generate Fresh Reviews';
+                });
+        }
+        
+        function updateFileName(input) {
+            const fileName = input.files[0] ? input.files[0].name : '';
+            document.getElementById('fileName').textContent = fileName;
+            
+            if (fileName) {
+                document.getElementById('uploadBtn').innerHTML = '<i class="fas fa-chart-bar me-2"></i>Analyze ' + fileName;
+            } else {
+                document.getElementById('uploadBtn').innerHTML = '<i class="fas fa-chart-bar me-2"></i>Analyze Groww Reviews';
+            }
+        }
+        
+        // Drag and drop functionality
+        const dropZone = document.getElementById('dropZone');
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.borderColor = '#00d09c';
+                dropZone.style.backgroundColor = 'rgba(0, 208, 156, 0.15)';
+            });
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.borderColor = '#dee2e6';
+                dropZone.style.backgroundColor = 'rgba(0, 208, 156, 0.05)';
+            });
+        });
+        
+        dropZone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                document.getElementById('file').files = files;
+                updateFileName({files: files});
+            }
+        });
+    </script>
+</body>
+</html>
