@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}?v=2">
     <style>
         :root {
-            --groww-green: #00d09c;
-            --groww-dark: #00b386;
+            --groww-green: #4db8ff;
+            --groww-dark: #3399ff;
         }
         body {
-            background: linear-gradient(135deg, #00d09c 0%, #00b386 100%);
+            background: linear-gradient(135deg, #4db8ff 0%, #66c2ff 100%);
             min-height: 100vh;
         }
         .hero-section {
@@ -49,13 +49,13 @@
             box-shadow: 0 8px 20px rgba(0, 208, 156, 0.4);
         }
         .btn-info {
-            background: linear-gradient(135deg, #00d09c, #00b386);
+            background: linear-gradient(135deg, #4db8ff, #3399ff);
             border: none;
             color: white;
             font-weight: 600;
         }
         .btn-info:hover {
-            background: linear-gradient(135deg, #00b386, #00d09c);
+            background: linear-gradient(135deg, #3399ff, #4db8ff);
             transform: translateY(-3px);
         }
         .feature-icon {
@@ -74,15 +74,15 @@
             font-weight: bold;
         }
         .upload-area {
-            border: 3px dashed var(--groww-green);
+            border: 3px dashed #4db8ff;
             border-radius: 15px;
             padding: 3rem;
             text-align: center;
-            background: rgba(0, 208, 156, 0.05);
+            background: rgba(77, 184, 255, 0.05);
             transition: all 0.3s ease;
         }
         .upload-area:hover {
-            background: rgba(0, 208, 156, 0.1);
+            background: rgba(77, 184, 255, 0.1);
         }
         footer {
             background: rgba(255, 255, 255, 0.1);
@@ -325,8 +325,8 @@
             dropZone.addEventListener(eventName, (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                dropZone.style.borderColor = '#00d09c';
-                dropZone.style.backgroundColor = 'rgba(0, 208, 156, 0.15)';
+                dropZone.style.borderColor = '#4db8ff';
+                dropZone.style.backgroundColor = 'rgba(77, 184, 255, 0.15)';
             });
         });
         
@@ -335,7 +335,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 dropZone.style.borderColor = '#dee2e6';
-                dropZone.style.backgroundColor = 'rgba(0, 208, 156, 0.05)';
+                dropZone.style.backgroundColor = 'rgba(77, 184, 255, 0.05)';
             });
         });
         
