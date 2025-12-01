@@ -39,14 +39,17 @@ def main():
     save_reviews_to_csv(reviews, csv_filename)
     
     # 3. Determine Target Week
-    # We want to analyze the last completed week (e.g., starting last Monday)
-    # For demonstration, we'll pick a date that ensures we have data from the sample generator.
+    # We want to analyze the last completed week.
     # The sample generator creates data for the past 8 weeks.
-    # Let's pick 7 days ago as the target week start.
+    # We'll pick a date 7 days ago to ensure we have data.
     today = datetime.now()
     target_date = today - timedelta(days=7)
     # Align to Monday
     target_week_start = (target_date - timedelta(days=target_date.weekday())).strftime("%Y-%m-%d")
+    
+    # DEBUG: Force a specific date if needed to match sample data generation
+    # The sample generator uses random dates in the last 56 days.
+    # Let's ensure we pick a week that likely has data.
     print(f"\nTarget week start: {target_week_start}")
 
     # 4. Run Analysis
