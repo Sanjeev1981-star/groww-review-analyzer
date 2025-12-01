@@ -78,13 +78,15 @@ def run_app_review_analysis(csv_file_path, target_week_start, email_config=None)
             body = parsed_email['email_body'].iloc[0]
             
             if subject and body:
-                send_weekly_email(
+                success = send_weekly_email(
                     email_subject=subject,
                     email_body=body,
                     to_email=email_config.get('recipient_email'),
                     sender_email=email_config.get('sender_email'),
                     sender_password=email_config.get('sender_password')
                 )
+                if not success:
+                    raise Exception("Failed to send email. Check logs for details.")
             else:
                 print("Skipping email: Subject or body missing in parsed content.")
         else:
