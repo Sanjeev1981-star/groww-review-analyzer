@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}?v=2">
     <style>
         :root {
-            --groww-green: #4db8ff;
-            --groww-dark: #3399ff;
+            --groww-green: #8a2be2;
+            --groww-dark: #6a0dad;
         }
         body {
-            background: linear-gradient(135deg, #4db8ff 0%, #66c2ff 100%);
+            background: linear-gradient(135deg, #8a2be2 0%, #9370db 100%);
             min-height: 100vh;
         }
         .hero-section {
@@ -22,7 +22,7 @@
             border-radius: 20px;
             padding: 3rem;
             color: white;
-            box-shadow: 0 20px 60px rgba(0, 208, 156, 0.3);
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
         }
         .card {
             border: none;
@@ -46,16 +46,16 @@
         }
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 208, 156, 0.4);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
         }
         .btn-info {
-            background: linear-gradient(135deg, #4db8ff, #3399ff);
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
             border: none;
             color: white;
             font-weight: 600;
         }
         .btn-info:hover {
-            background: linear-gradient(135deg, #3399ff, #4db8ff);
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
             transform: translateY(-3px);
         }
         .feature-icon {
@@ -74,15 +74,15 @@
             font-weight: bold;
         }
         .upload-area {
-            border: 3px dashed #4db8ff;
+            border: 3px dashed #8a2be2;
             border-radius: 15px;
             padding: 3rem;
             text-align: center;
-            background: rgba(77, 184, 255, 0.05);
+            background: rgba(138, 43, 226, 0.05);
             transition: all 0.3s ease;
         }
         .upload-area:hover {
-            background: rgba(77, 184, 255, 0.1);
+            background: rgba(138, 43, 226, 0.1);
         }
         footer {
             background: rgba(255, 255, 255, 0.1);
@@ -325,8 +325,8 @@
             dropZone.addEventListener(eventName, (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                dropZone.style.borderColor = '#4db8ff';
-                dropZone.style.backgroundColor = 'rgba(77, 184, 255, 0.15)';
+                dropZone.style.borderColor = '#8a2be2';
+                dropZone.style.backgroundColor = 'rgba(138, 43, 226, 0.15)';
             });
         });
         
@@ -335,7 +335,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 dropZone.style.borderColor = '#dee2e6';
-                dropZone.style.backgroundColor = 'rgba(77, 184, 255, 0.05)';
+                dropZone.style.backgroundColor = 'rgba(138, 43, 226, 0.05)';
             });
         });
         

@@ -16,14 +16,16 @@ from nodes.llm_tag_theme_sentiment import llm_tag_theme_sentiment
 from nodes.theme_stats import theme_stats
 from nodes.llm_weekly_pulse import llm_weekly_pulse
 from nodes.parse_email_json import parse_email_json
+from nodes.send_weekly_email import send_weekly_email
 
-def run_app_review_analysis(csv_file_path, target_week_start):
+def run_app_review_analysis(csv_file_path, target_week_start, email_config=None):
     """
     Run the complete app review analysis pipeline.
     
     Args:
         csv_file_path (str): Path to the CSV file containing reviews
         target_week_start (str): Target week start date in format "YYYY-MM-DD"
+        email_config (dict): Optional configuration for sending email
         
     Returns:
         dict: Results from each step of the pipeline
@@ -68,6 +70,26 @@ def run_app_review_analysis(csv_file_path, target_week_start):
     parsed_email = parse_email_json(email_df)
     print("Parsed email components")
     
+    # Node 8: Send Email
+    if email_config:
+        print("\nNode 8: Sending weekly email...")
+        if not parsed_email.empty:
+            subject = parsed_email['email_subject'].iloc[0]
+            body = parsed_email['email_body'].iloc[0]
+            
+            if subject and body:
+                send_weekly_email(
+                    email_subject=subject,
+                    email_body=body,
+                    to_email=email_config.get('recipient_email'),
+                    sender_email=email_config.get('sender_email'),
+                    sender_password=email_config.get('sender_password')
+                )
+            else:
+                print("Skipping email: Subject or body missing in parsed content.")
+        else:
+            print("Skipping email: Parsed email dataframe is empty.")
+
     # Return results from all steps
     results = {
         "reviews_raw": reviews_raw,
