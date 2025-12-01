@@ -13,6 +13,11 @@ def main():
     sender_email = os.getenv("SENDER_EMAIL")
     sender_password = os.getenv("SENDER_PASSWORD")
     
+    print("Debug: Checking Environment Variables...")
+    print(f"RECIPIENT_EMAIL: {'Found' if recipient_email else 'MISSING'}")
+    print(f"SENDER_EMAIL: {'Found' if sender_email else 'MISSING'}")
+    print(f"SENDER_PASSWORD: {'Found' if sender_password else 'MISSING'}")
+    
     email_config = None
     if recipient_email and sender_email and sender_password:
         email_config = {

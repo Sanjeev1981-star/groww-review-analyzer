@@ -77,6 +77,9 @@ def run_app_review_analysis(csv_file_path, target_week_start, email_config=None)
             subject = parsed_email['email_subject'].iloc[0]
             body = parsed_email['email_body'].iloc[0]
             
+            print(f"Debug: Email Subject found: {'Yes' if subject else 'No'}")
+            print(f"Debug: Email Body found: {'Yes' if body else 'No'}")
+            
             if subject and body:
                 success = send_weekly_email(
                     email_subject=subject,
@@ -89,6 +92,7 @@ def run_app_review_analysis(csv_file_path, target_week_start, email_config=None)
                     raise Exception("Failed to send email. Check logs for details.")
             else:
                 print("Skipping email: Subject or body missing in parsed content.")
+                print(f"Parsed Data: {parsed_email.to_dict()}")
         else:
             print("Skipping email: Parsed email dataframe is empty.")
 
